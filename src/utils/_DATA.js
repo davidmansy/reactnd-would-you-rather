@@ -1,4 +1,4 @@
-//TODO: ADD THE AVATAR URL
+//TODO: Add avatar urls
 let users = {
   sarahedo: {
     id: 'sarahedo',
@@ -116,8 +116,6 @@ let questions = {
   }
 };
 
-let authedUser = null;
-
 function generateUID() {
   return (
     Math.random()
@@ -138,14 +136,6 @@ export function _getUsers() {
 export function _getQuestions() {
   return new Promise((res, rej) => {
     setTimeout(() => res({ ...questions }), 1000);
-  });
-}
-
-export function _getAuthedUser() {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res(authedUser);
-    }, 1000);
   });
 }
 
@@ -214,15 +204,6 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
         }
       };
 
-      res();
-    }, 500);
-  });
-}
-
-export function _saveAuthedUser(id) {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      authedUser = id;
       res();
     }, 500);
   });
