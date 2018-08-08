@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import LogoutButton from './LogoutButton';
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <span>Home</span>
+        <h1>Home</h1>
+        <p>{this.props.authedUser}</p>
+        <LogoutButton />
       </div>
     );
   }
 }
 
-export default Home;
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser
+  };
+}
+
+export default connect(mapStateToProps)(Home);

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LoadingBar from 'react-redux-loading';
+import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from '../actions/shared';
 import PrivateRoute from './PrivateRoute';
 import Login from './Login';
@@ -13,15 +13,15 @@ class App extends Component {
   }
 
   render() {
-    const { authedUser } = this.props;
+    const { authedUser, loading } = this.props;
     const isAuthenticated = authedUser ? true : false;
-    console.log('App: isAuthenticated', isAuthenticated);
+
     return (
       <Router>
         <Fragment>
           <LoadingBar />
           <div className="container">
-            {this.props.loading === true ? null : (
+            {loading.default === 1 ? null : (
               <div>
                 <PrivateRoute
                   path="/"
@@ -39,9 +39,10 @@ class App extends Component {
   }
 }
 
-function mapStatesToProps({ authedUser }) {
+function mapStatesToProps({ authedUser, loadingBar }) {
   return {
-    authedUser
+    authedUser,
+    loading: loadingBar
   };
 }
 
