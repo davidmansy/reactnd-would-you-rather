@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setAuthedUser } from '../actions/authedUser';
+import { setAuthedUser } from '../../actions/authedUser';
 
-class LogoutButton extends Component {
+class Logout extends Component {
   handleClick = e => {
     const { history, dispatch } = this.props;
     dispatch(setAuthedUser(null));
@@ -15,4 +15,4 @@ class LogoutButton extends Component {
   }
 }
 
-export default withRouter(connect()(LogoutButton));
+export default withRouter(connect()(Logout));
