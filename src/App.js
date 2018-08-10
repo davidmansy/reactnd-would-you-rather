@@ -8,7 +8,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import AddQuestion from './components/AddQuestion';
 import NotFound from './components/NotFound';
-import Question from './components/Question';
+import QuestionDetails from './components/QuestionDetails';
 import Leaderboard from './components/Leaderboard';
 
 class App extends Component {
@@ -43,7 +43,7 @@ class App extends Component {
                   <PrivateRoute
                     path="/question/:id"
                     exact
-                    component={Question}
+                    component={QuestionDetails}
                     isAuthenticated={isAuthenticated}
                   />
                   <PrivateRoute

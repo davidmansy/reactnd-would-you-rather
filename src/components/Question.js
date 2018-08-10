@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import Header from './Header';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Question extends Component {
+  handleViewPoll = e => {
+    const { history, question } = this.props;
+    e.preventDefault();
+    history.push(`/question/${question.id}`);
+  };
+
   render() {
-    const { match } = this.props;
+    const { question, authorName } = this.props;
     return (
       <div>
-        {match.params.id === '121' ? (
-          <Redirect to="/notfound" />
-        ) : (
-          <div>
-            <Header />
-            <h1>Question {match.params.id}</h1>
-          </div>
-        )}
+        <p>{authorName} asks</p>
+        <p>avatar</p>
+        <p>Would you rather</p>
+        <p>{question.optionOne.text}</p>
+        <button onClick={this.handleViewPoll}>View Poll</button>
       </div>
     );
   }
 }
 
-export default Question;
+function mapStateToProps({ questions, users }, { id }) {
+  const question = questions[id];
+  return {
+    question,
+    authorName: users[question.author].name
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Question));

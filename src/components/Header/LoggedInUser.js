@@ -4,12 +4,13 @@ import Logout from './Logout';
 
 class LoggedInUser extends Component {
   render() {
+    const { loggedInUser } = this.props;
     return (
       <div>
         <ul>
           <li>
-            <span>Hello {this.props.authedUser}</span>
-            <span> | todo: avatar</span>
+            <span>Hello {loggedInUser.name}</span>
+            <span> | avatar: {loggedInUser.avatar}</span>
           </li>
           <li>
             <Logout />
@@ -20,9 +21,9 @@ class LoggedInUser extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
-    authedUser
+    loggedInUser: users[authedUser]
   };
 }
 
