@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import Header from './Header';
+import { connect } from 'react-redux';
+import User from './User';
 
 class Leaderboard extends Component {
   render() {
-    return (
-      <div>
-        <Header />
-        <h1>Leaderboard</h1>
-      </div>
-    );
+    const { usersIds } = this.props;
+    return <div>{usersIds.map(id => <User key={id} id={id} />)}</div>;
   }
 }
 
-export default Leaderboard;
+function mapStateToProps({ users }) {
+  const usersIds = Object.keys(users).sort((u1, u2) => {
+    const scoreU1 =
+      users[u1].questions.length + Object.keys(users[u1].answers).length;
+    const scoreU2 =
+      users[u2].questions.length + Object.keys(users[u2].answers).length;
+    return scoreU2 - scoreU1;
+  });
+  return {
+    usersIds
+  };
+}
+
+export default connect(mapStateToProps)(Leaderboard);

@@ -1,4 +1,7 @@
-//TODO: Add avatar urls
+import { each } from 'lodash';
+
+const AVATAR_URL = 'https://ui-avatars.com/api/?name=';
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
@@ -115,6 +118,13 @@ let questions = {
     }
   }
 };
+
+each(users, user => {
+  const names = user.name.split(' ');
+  const firstName = names[0];
+  const lastName = names[names.length - 1];
+  user.avatar = `${AVATAR_URL}${firstName}+${lastName}`;
+});
 
 function generateUID() {
   return (

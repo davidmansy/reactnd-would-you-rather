@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/questions';
-import Header from './Header';
 
 class AddQuestion extends Component {
   state = {
@@ -41,7 +40,6 @@ class AddQuestion extends Component {
     const { optionOneText, optionTwoText, isSubmitDisable } = this.state;
     return (
       <div>
-        <Header />
         <h1>Create New Question</h1>
         <p>Complete the question</p>
         <p>Would you rather...</p>

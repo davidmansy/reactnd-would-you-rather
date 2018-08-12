@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Header from '../Header';
 import AnsweredQuestion from './AnsweredQuestion';
 import UnansweredQuestion from './UnansweredQuestion';
 import { handleAnswerQuestion } from '../../actions/questions';
@@ -28,7 +27,6 @@ class QuestionDetails extends Component {
           <Redirect to="/notfound" />
         ) : (
           <div>
-            <Header />
             {answered ? (
               <AnsweredQuestion id={question.id} />
             ) : (

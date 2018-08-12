@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from './actions/shared';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './utils/PrivateRoute';
+import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
 import AddQuestion from './components/AddQuestion';
@@ -23,39 +24,38 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+          <Header />
           <LoadingBar />
           <div className="container">
             {loading.default === 1 ? null : (
-              <div>
-                <Switch>
-                  <PrivateRoute
-                    path="/"
-                    exact
-                    component={Home}
-                    isAuthenticated={isAuthenticated}
-                  />
-                  <PrivateRoute
-                    path="/add"
-                    exact
-                    component={AddQuestion}
-                    isAuthenticated={isAuthenticated}
-                  />
-                  <PrivateRoute
-                    path="/question/:id"
-                    exact
-                    component={QuestionDetails}
-                    isAuthenticated={isAuthenticated}
-                  />
-                  <PrivateRoute
-                    path="/leaderboard"
-                    exact
-                    component={Leaderboard}
-                    isAuthenticated={isAuthenticated}
-                  />
-                  <Route path="/login" component={Login} />
-                  <Route component={NotFound} />
-                </Switch>
-              </div>
+              <Switch>
+                <PrivateRoute
+                  path="/"
+                  exact
+                  component={Home}
+                  isAuthenticated={isAuthenticated}
+                />
+                <PrivateRoute
+                  path="/add"
+                  exact
+                  component={AddQuestion}
+                  isAuthenticated={isAuthenticated}
+                />
+                <PrivateRoute
+                  path="/question/:id"
+                  exact
+                  component={QuestionDetails}
+                  isAuthenticated={isAuthenticated}
+                />
+                <PrivateRoute
+                  path="/leaderboard"
+                  exact
+                  component={Leaderboard}
+                  isAuthenticated={isAuthenticated}
+                />
+                <Route path="/login" component={Login} />
+                <Route component={NotFound} />
+              </Switch>
             )}
           </div>
         </Fragment>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from './Header';
 import Questions from './Questions';
 
 class Home extends Component {
@@ -18,7 +17,6 @@ class Home extends Component {
     const { answered } = this.state;
     return (
       <div>
-        <Header />
         <h1>Home</h1>
         <ul>
           <li>

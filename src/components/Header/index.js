@@ -1,12 +1,12 @@
 import React from 'react';
 import Nav from './Nav';
-import LoggedInUser from './LoggedInUser';
+import AuthedUser from './AuthedUser';
 
 export default function Header() {
   return (
-    <div>
+    <div className="header">
       <Nav />
-      <LoggedInUser />
+      <AuthedUser />
     </div>
   );
 }
