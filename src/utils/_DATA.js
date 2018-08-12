@@ -1,4 +1,4 @@
-import { each } from 'lodash';
+import each from 'lodash/each';
 
 const AVATAR_URL = 'https://ui-avatars.com/api/?name=';
 
