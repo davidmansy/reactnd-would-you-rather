@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { setAuthedUser } from '../../actions/authedUser';
+import reactImage from '../../images/react-150.png';
+import reduxImage from '../../images/redux-150.png';
 
 class LoginForm extends Component {
   state = {
     redirectToReferrer: false,
-    userId: ''
+    userId: '',
+    submitButtonIsDisabled: true
   };
 
   handleChange = e => {
     const userId = e.target.value;
     this.setState(() => ({
-      userId
+      userId,
+      submitButtonIsDisabled: userId === '' ? true : false
     }));
   };
 
@@ -27,7 +31,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { redirectToReferrer, userId } = this.state;
+    const { redirectToReferrer, userId, submitButtonIsDisabled } = this.state;
     const { users } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } };
 
@@ -36,19 +40,41 @@ class LoginForm extends Component {
     }
 
     return (
-      <form onSubmit={this.signIn}>
-        <select value={userId} onChange={this.handleChange}>
-          <option key={null} value={''}>
-            Please select a user
-          </option>
-          {users.map(user => (
-            <option key={user.id} value={user.id}>
-              {user.name}
+      <div className="login__content">
+        <div className="login__content__image-container">
+          <img
+            className="login__content__image"
+            src={reduxImage}
+            alt="react logo"
+          />
+        </div>
+        <p className="login__content__title">Sign In</p>
+        <form onSubmit={this.signIn} className="login__content__form">
+          <select
+            value={userId}
+            onChange={this.handleChange}
+            className="login__content_user"
+          >
+            <option key={null} value={''}>
+              Please select a user
             </option>
-          ))}
-        </select>
-        <input type="submit" value="Sign In" />
-      </form>
+            {users.map(user => (
+              <option key={user.id} value={user.id}>
+                {user.name}
+              </option>
+            ))}
+          </select>
+          <button
+            disabled={submitButtonIsDisabled}
+            className={`login__content__submit ${
+              submitButtonIsDisabled ? 'login__content__submit--disabled' : ''
+            }`}
+            type="submit"
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
     );
   }
 }
