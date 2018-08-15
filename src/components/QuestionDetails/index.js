@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AnsweredQuestion from './AnsweredQuestion';
@@ -22,11 +22,11 @@ class QuestionDetails extends Component {
     const { question, answered } = this.props;
 
     return (
-      <div>
+      <Fragment>
         {!question ? (
           <Redirect to="/notfound" />
         ) : (
-          <div>
+          <Fragment>
             {answered ? (
               <AnsweredQuestion id={question.id} />
             ) : (
@@ -35,9 +35,9 @@ class QuestionDetails extends Component {
                 handleSubmitAnswer={this.handleSubmitAnswer}
               />
             )}
-          </div>
+          </Fragment>
         )}
-      </div>
+      </Fragment>
     );
   }
 }

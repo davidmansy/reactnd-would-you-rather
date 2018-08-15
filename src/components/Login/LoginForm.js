@@ -66,8 +66,8 @@ class LoginForm extends Component {
           </select>
           <button
             disabled={submitButtonIsDisabled}
-            className={`login__content__submit ${
-              submitButtonIsDisabled ? 'login__content__submit--disabled' : ''
+            className={`button__submit ${
+              submitButtonIsDisabled ? 'button__submit--disabled' : ''
             }`}
             type="submit"
           >

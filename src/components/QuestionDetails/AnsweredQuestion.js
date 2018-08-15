@@ -3,38 +3,85 @@ import { connect } from 'react-redux';
 
 const OPTION_ONE = 'optionOne';
 const OPTION_TWO = 'optionTwo';
+const LARGE_SIZE = '&size=130';
+const VOTE_ZERO_COLOR = 'lightgrey';
+const VOTE_GREATER_ZERO_COLOR = '#4bc197';
 
 class AnsweredQuestion extends Component {
   render() {
-    const { authorName, question, answer } = this.props;
+    const { author, question, answer } = this.props;
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
     const optionOnePercentVotes = (optionOneVotes / totalVotes) * 100;
     const optionTwoPercentVotes = (optionTwoVotes / totalVotes) * 100;
+    const largeAvatarURl = `${author.avatar}${LARGE_SIZE}`;
 
     return (
-      <div>
-        <span>Answered question details</span>
-        <div>
-          <h2>{`Asked by ${authorName}`}</h2>
-          <div>
-            <h2>Results:</h2>
-            <div>
-              <p>{`Would you rather ${question.optionOne.text}`}</p>
-              {answer === OPTION_ONE && <p>Selected by you!</p>}
-              <p>Percentage: {optionOnePercentVotes}</p>
-              <p>{`${optionOneVotes} out of ${totalVotes} votes`}</p>
+      <div id="question-details" className="questions__item">
+        <div className="questions__item__user">{author.name} asks:</div>
+        <div className="questions__item__content">
+          <div className="questions__item__content__avatar__container">
+            <img
+              className="questions__item__content__avatar"
+              src={largeAvatarURl}
+              alt="User avatar"
+            />
+          </div>
+          <div className="questions__item__content__description">
+            <p className="questions__item__content__description__intro">
+              Results
+            </p>
+            <div
+              className={`questions__item__content__answered__container ${
+                answer === OPTION_ONE
+                  ? 'questions__item__content__answered__container--selected'
+                  : ''
+              }`}
+            >
+              <p className="questions__item__content__answered__intro">{`Would you rather ${
+                question.optionOne.text
+              }`}</p>
+              <div
+                style={{
+                  width: `${optionOnePercentVotes}%`,
+                  backgroundColor:
+                    optionOnePercentVotes === 0
+                      ? VOTE_ZERO_COLOR
+                      : VOTE_GREATER_ZERO_COLOR
+                }}
+                className="questions__item__content__answered__progress-bar"
+              >
+                {`${optionOnePercentVotes}%`}
+              </div>
+              <p className="questions__item__content__answered__votes">{`${optionOneVotes} out of ${totalVotes} votes`}</p>
             </div>
-            <div>
-              <p>{`Would you rather ${question.optionTwo.text}`}</p>
-              {answer === OPTION_TWO && <p>Selected by you!</p>}
-              <p>Percentage: {optionTwoPercentVotes}</p>
-              <p>{`${optionTwoVotes} out of ${totalVotes} votes`}</p>
+            <div
+              className={`questions__item__content__answered__container ${
+                answer === OPTION_TWO
+                  ? 'questions__item__content__answered__container--selected'
+                  : ''
+              }`}
+            >
+              <p className="questions__item__content__answered__intro">{`Would you rather ${
+                question.optionTwo.text
+              }`}</p>
+              <div
+                style={{
+                  width: `${optionTwoPercentVotes}%`,
+                  backgroundColor:
+                    optionTwoPercentVotes === 0
+                      ? VOTE_ZERO_COLOR
+                      : VOTE_GREATER_ZERO_COLOR
+                }}
+                className="questions__item__content__answered__progress-bar"
+              >
+                {`${optionTwoPercentVotes}%`}
+              </div>
+              <p className="questions__item__content__answered__votes">{`${optionTwoVotes} out of ${totalVotes} votes`}</p>
             </div>
           </div>
         </div>
-        <div />
       </div>
     );
   }
@@ -48,7 +95,7 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
 
   return {
     question,
-    authorName: users[question.author].name,
+    author: users[question.author],
     answer
   };
 }
