@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { setAuthedUser } from '../../actions/authedUser';
-import reactImage from '../../images/react-150.png';
 import reduxImage from '../../images/redux-150.png';
 
 class LoginForm extends Component {
@@ -50,6 +49,7 @@ class LoginForm extends Component {
         </div>
         <p className="login__content__title">Sign In</p>
         <form onSubmit={this.signIn} className="login__content__form">
+          {/* TODO: Implement a custom dropdown */}
           <select
             value={userId}
             onChange={this.handleChange}

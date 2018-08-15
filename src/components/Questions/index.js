@@ -6,10 +6,10 @@ import filter from 'lodash/filter';
 class Questions extends Component {
   render() {
     return (
-      <div>
+      <div className="questions">
         <ul>
           {this.props.questionIds.map(id => (
-            <li key={id}>
+            <li key={id} className="questions__list">
               <Question id={id} />
             </li>
           ))}

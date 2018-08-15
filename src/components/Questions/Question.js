@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+const MEDIUM_SIZE = '&size=90';
+
 class Question extends Component {
   handleViewPoll = e => {
     const { history, question } = this.props;
@@ -10,14 +12,34 @@ class Question extends Component {
   };
 
   render() {
-    const { question, authorName } = this.props;
+    const { question, author } = this.props;
+    const mediumAvatarURl = `${author.avatar}${MEDIUM_SIZE}`;
     return (
-      <div>
-        <p>{authorName} asks</p>
-        <p>avatar</p>
-        <p>Would you rather</p>
-        <p>{question.optionOne.text}</p>
-        <button onClick={this.handleViewPoll}>View Poll</button>
+      <div className="questions__item">
+        <div className="questions__item__user">{author.name} asks:</div>
+        <div className="questions__item__content">
+          <div className="questions__item__content__avatar__container">
+            <img
+              className="questions__item__content__avatar"
+              src={mediumAvatarURl}
+              alt="User avatar"
+            />
+          </div>
+          <div className="questions__item__content__description">
+            <p className="questions__item__content__description__intro">
+              Would you rather
+            </p>
+            <p className="questions__item__content__text--truncated">
+              {`...${question.optionOne.text}`}
+            </p>
+            <button
+              className="questions__item__content__submit"
+              onClick={this.handleViewPoll}
+            >
+              View Poll
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -27,7 +49,7 @@ function mapStateToProps({ questions, users }, { id }) {
   const question = questions[id];
   return {
     question,
-    authorName: users[question.author].name
+    author: users[question.author]
   };
 }
 
