@@ -13,8 +13,14 @@ class AnsweredQuestion extends Component {
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
-    const optionOnePercentVotes = (optionOneVotes / totalVotes) * 100;
-    const optionTwoPercentVotes = (optionTwoVotes / totalVotes) * 100;
+    const optionOnePercentVotes = Number.parseInt(
+      (optionOneVotes / totalVotes) * 100,
+      10
+    );
+    const optionTwoPercentVotes = Number.parseInt(
+      (optionTwoVotes / totalVotes) * 100,
+      10
+    );
     const largeAvatarURl = `${author.avatar}${LARGE_SIZE}`;
 
     return (

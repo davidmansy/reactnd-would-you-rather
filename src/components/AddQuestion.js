@@ -39,26 +39,40 @@ class AddQuestion extends Component {
   render() {
     const { optionOneText, optionTwoText, isSubmitDisable } = this.state;
     return (
-      <div>
-        <h1>Create New Question</h1>
-        <p>Complete the question</p>
-        <p>Would you rather...</p>
-        <form onSubmit={this.handleAddQuestion}>
-          <input
-            type="text"
-            value={optionOneText}
-            onChange={this.handleOptionOneChange}
-          />
-          <div>OR</div>
-          <input
-            type="text"
-            value={optionTwoText}
-            onChange={this.handleOptionTwoChange}
-          />
-          <button disabled={isSubmitDisable} type="submit">
-            Submit
-          </button>
-        </form>
+      <div className="addQuestion">
+        <div className="addQuestion__title">Create New Question</div>
+        <div className="addQuestion__content">
+          <p className="addQuestion__instruction">Complete the question</p>
+          <p className="addQuestion__startText">Would you rather...</p>
+          <form onSubmit={this.handleAddQuestion} className="addQuestion__form">
+            <input
+              type="text"
+              value={optionOneText}
+              onChange={this.handleOptionOneChange}
+              className="addQuestion__inputText"
+              placeholder="Enter Option One Text Here"
+            />
+            <p className="addQuestion__inputText__separator">
+              <span>OR</span>
+            </p>
+            <input
+              type="text"
+              value={optionTwoText}
+              onChange={this.handleOptionTwoChange}
+              className="addQuestion__inputText"
+              placeholder="Enter Option Two Text Here"
+            />
+            <button
+              disabled={isSubmitDisable}
+              type="submit"
+              className={`button__submit ${
+                isSubmitDisable ? 'button__submit--disabled' : ''
+              }`}
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import User from './User';
 
 class Leaderboard extends Component {
   render() {
     const { usersIds } = this.props;
-    return <div>{usersIds.map(id => <User key={id} id={id} />)}</div>;
+    return (
+      <Fragment>
+        {usersIds.map((id, index) => <User key={id} id={id} rank={index} />)}
+      </Fragment>
+    );
   }
 }
 

@@ -40,20 +40,16 @@ class LoginForm extends Component {
 
     return (
       <div className="login__content">
-        <div className="login__content__image-container">
-          <img
-            className="login__content__image"
-            src={reduxImage}
-            alt="react logo"
-          />
+        <div className="login__image__container">
+          <img className="login__image" src={reduxImage} alt="react logo" />
         </div>
-        <p className="login__content__title">Sign In</p>
-        <form onSubmit={this.signIn} className="login__content__form">
+        <p className="login__title">Sign In</p>
+        <form onSubmit={this.signIn} className="login__form">
           {/* TODO: Implement a custom dropdown */}
           <select
             value={userId}
             onChange={this.handleChange}
-            className="login__content_user"
+            className="login__user"
           >
             <option key={null} value={''}>
               Please select a user

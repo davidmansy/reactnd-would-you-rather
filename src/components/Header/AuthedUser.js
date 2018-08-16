@@ -2,21 +2,21 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Logout from './Logout';
 
-const SMALL_SIZE = '&size=30';
+const X_SMALL_SIZE = '&size=30';
 
 class AuthedUser extends Component {
   render() {
     const { user } = this.props;
-    const smallAvatarURl = user ? `${user.avatar}${SMALL_SIZE}` : null;
+    const xSmallAvatarURl = user ? `${user.avatar}${X_SMALL_SIZE}` : null;
     return (
       user && (
         <Fragment>
-          <div className="authed-user">
-            <span className="authed-user__name">{`Hello, ${user.name}`}</span>
+          <div className="authedUser">
+            <span className="authedUser__name">{`Hello, ${user.name}`}</span>
             <span>
               <img
-                className="authed-user__avatar--small"
-                src={smallAvatarURl}
+                className="authedUser__avatar--small"
+                src={xSmallAvatarURl}
                 alt="User avatar"
               />
             </span>
