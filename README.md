@@ -2,7 +2,7 @@
 
 This is my version of the final assessment project for Udacity's React/Redux Fundamentals course.
 
-This version includes the core requirements available [here](https://review.udacity.com/#!/rubrics/1567/view). I created my own css files to fit as much as possible the style of the demo app (always a nice css exercice to start from scratch and without any css framework) and I expect to add the following functionalities in the coming months:
+This version includes the core Udacity requirements. I created my own css files to fit as much as possible the style of the demo app (always a nice css exercice to start from scratch and without any css framework) and I expect to add the following functionalities in the coming months:
 
 - develop a custom dropdown list control,
 - ability to create new users,
