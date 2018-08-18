@@ -42,7 +42,7 @@ class App extends Component {
                   isAuthenticated={isAuthenticated}
                 />
                 <PrivateRoute
-                  path="/question/:id"
+                  path="/questions/:id"
                   exact
                   component={QuestionDetails}
                   isAuthenticated={isAuthenticated}

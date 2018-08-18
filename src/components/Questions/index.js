@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
 import filter from 'lodash/filter';
 
-class Questions extends Component {
-  render() {
-    return (
-      <div className="questions">
-        <ul>
-          {this.props.questionIds.map(id => (
-            <li key={id} className="questions__list">
-              <Question id={id} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+const Questions = ({ questionIds }) => {
+  return (
+    <div className="questions">
+      <ul>
+        {questionIds.map(id => (
+          <li key={id} className="questions__list">
+            <Question id={id} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 function mapStatesToProps({ questions, authedUser }, { answered = false }) {
   return {
