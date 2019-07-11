@@ -54,6 +54,7 @@ class App extends Component {
                   isAuthenticated={isAuthenticated}
                 />
                 <Route path="/login" component={Login} />
+                <Route path="/index.html" component={Login} />
                 <Route component={NotFound} />
               </Switch>
             )}
